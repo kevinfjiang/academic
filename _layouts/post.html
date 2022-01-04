@@ -12,7 +12,15 @@ layout: default
     <img class="post-thumbnail" src="/assets/{{ page.thumbnail }}" alt="{{ page.title | escape }}"/>
     {% endif %}
     <div class="wrapper">
-      <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+      <h1 class="post-title" itemprop="name headline">
+        {% if page.link %}
+        <a href={{ page.link | escape}}>{{ page.title | escape }}</a>
+        {% else %}
+        {{ page.title | escape }}
+        {% endif %}
+
+      </h1>
+
       <p class="post-meta">
         <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
           {% include _i18n/date.html date=page.date %}
